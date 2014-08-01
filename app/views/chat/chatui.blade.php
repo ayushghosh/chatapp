@@ -2,7 +2,8 @@
 
 @section('header__menuToggle')
 <div style="display:inline-block;float:right;min-width:150px;"><a href="/logout" class="wf">logout ({{ Auth::user()->username}})</a></div>
-<div style="display:inline-block;" class="header__menuToggle"><i class="glyphicon glyphicon-tasks">&nbsp;</i>Rooms</div>
+<div style="display:inline-block;" class="header__menuToggle"><i class="glyphicon glyphicon-tasks">&nbsp;</i>Chat Rooms</div>
+<div style="display:inline-block;" class="" onclick="window.location.href='home'"><i class="glyphicon glyphicon-home">&nbsp;</i>home</div>
 @stop
 
 @section('content')
@@ -16,8 +17,17 @@
 @foreach($rooms as $room)
 <div class='chatGroup{{ $room->id }} chatGroup' style="display:none">
     <div class="content__chatWindow col-lg-10">
-        window
+        <ul class="chatWindow{{ $room->id }} chatWindow list-unstyled">
+            <!-- <li>
+                <span class="chatWindow__userTime">
+                    <span class="chatWindow__username">Ayush Ghosh</span> <br>               
+                    <span class="chatWindow__chattime">3 mins</span>
+                </span>
+                <span class="chatWindow__chattext">test is here</span>
+            </li> -->
+        </ul>
     </div>
+
 
     <div class="content__chatUsers col-lg-2">
         Users
@@ -40,7 +50,7 @@
 @section('outView')
     <div class="header__menu">
       <ul class="list-unstyled">
-        <li class="chatRoom" data-chatRoom="lobby"><i class="glyphicon glyphicon-th-large">&nbsp;</i>lobby</li>
+        <li class="chatRoom" data-chatRoom="lobby"><i class="glyphicon glyphicon-th">&nbsp;</i>lobby</li>
 @foreach($rooms as $room)
 
         <li class="chatRoom" data-chatRoom="{{ $room->id }}"><i class="glyphicon glyphicon-th-large">&nbsp;</i>{{ $room->room }}</li>
@@ -59,6 +69,7 @@ var formActive = 0;
 		$('document').ready(function(){
             $('.content').css("min-height",'100px');
             $('.content').css("height",window.innerHeight-180+'px');
+            $('.content__chatWindow').css("height",window.innerHeight-350+'px');
 
             $('.header__menuToggle').click(function(){
                 $('.header__menu').animate({left: '0px'},'fast');
@@ -116,13 +127,20 @@ function ajax(type,url,data)
     var pusher = new Pusher('bd51255b63e4d2408538');
     var channel = pusher.subscribe('chatApp');
     channel.bind('myevent', function(data) {
-      alert(data.message);
+      //alert(data.from);
     });
     @foreach($rooms as $room)
     channel.bind('chatGroup{{ $room->id }}', function(data) {
-      alert(data.message);
+      Notify(data,'{{ $room->id }}');
     });
     @endforeach
+
+    function Notify(chatData,room)
+    {
+        $('ul.chatWindow'+room).append('<li><span class="chatWindow__userTime"><span class="chatWindow__username">'+chatData.from+'</span><br><span class="chatWindow__chattime">'+'few moments ago'+'</span></span><span class="chatWindow__chattext">'+chatData.message+'</span></li>');
+        $(".content__chatWindow").animate({ scrollTop: $('ul.chatWindow'+room).height() },500);
+    }
+    
 
 
   </script>

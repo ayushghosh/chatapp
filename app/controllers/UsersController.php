@@ -12,8 +12,13 @@ class UsersController extends \BaseController {
 		Input::merge(array_map('trim', Input::all()));
 		$chat = Input::get('chat');
 		$chat = json_decode($chat);
+		$from = User::find($chat->from);
+		if($from)
+		$fromName = $from->username;
+		else
+			return;
 		$pusher = new Pusher('bd51255b63e4d2408538', '7841a925632e5a93c1ed','83817');
-		$pusher->trigger('chatApp', 'chatGroup'.$chat->room,['from'=> $chat->from , 'message' => $chat->message]);
+		$pusher->trigger('chatApp', 'chatGroup'.$chat->room,['from'=> $fromName , 'message' => $chat->message]);
 		echo json_encode(['status'=>1]);
 	}
 
