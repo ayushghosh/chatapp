@@ -144,7 +144,7 @@ var formActive = 0;
 			}
 			else
 			{
-				o1 = ajax('POST','/signup','Username='+iUsername2+'&Password='+iPassword2+'&Email='+iEmail2+'&Team='+iTeam2);
+				o1 = ajax('POST','/signup','Username='+iUsername2+'&Password='+iPassword2+'&Email='+iEmail2+'&Type=2&Team='+iTeam2);
 				if(o1.status==201){
 					window.location.href=location.protocol+'//'+iTeam2+'.'+location.hostname+'/';
 				}

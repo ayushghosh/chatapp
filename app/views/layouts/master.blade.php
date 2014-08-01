@@ -28,6 +28,9 @@
 			</div>
 			@show
 		</div>
+		@section('outView')
+
+		@show
 		@section('inlineJS')
 		{{ HTML::script('js/jquery-2.1.1.min.js') }}
 		

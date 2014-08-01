@@ -25,6 +25,10 @@ label
 {
 	color: #fff;
 }
+.wf:hover
+{
+	color: #fff;
+}
 .wfb
 {
 	font-weight: bold;
@@ -194,6 +198,113 @@ label
 {
 	float: right;
 }
+.header__menu
+{
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	bottom: 0px;
+	width: 200px;
+	z-index: 999;
+	background-color: #fff;
+	border-right: 2px solid #da4453;
+	border-bottom: 2px solid #da4453;
+	border-radius: 0px 0px 3px 0px;
+	/*display: none;*/
+	left: -200px;
+}
+
+.header__menu ul
+{
+	padding-top:15px;
+}
+
+.header__menu li
+{
+	margin: 0px;
+	padding-top: 10px;
+	padding: 8px;
+	padding-left: 20px;
+	font-size: 18px;
+	cursor: pointer;
+
+}
+
+.header__menu li:hover
+{
+	background: #da4453;
+	color: #fff;
+}
+.header__menu li i
+{
+	color: #ed5565;
+}
+
+.header__menu li:hover i
+{
+	color: #fff;
+}
+
+.content__lobby li
+{
+	display: block;
+	padding: 10px 30px 10px 30px; 
+	border:3px solid #eee;
+	margin-bottom: 5px;
+	border-radius: 4px;
+	font-size: 20px;
+	cursor: pointer;	
+}
+.content__lobby li:hover
+{
+	background: #fc6e51;
+	color: #fff;
+}
+
+.content__chatUsers
+{
+	border-left: 3px solid #eee;
+	min-height: 100px;
+}
+.content__chatWindow
+{
+
+}
+.footer__chatBox
+{
+	height:90px;
+	position:relative;
+	bottom:0px;
+	padding: 10px;
+}
+.chatBox textarea
+{
+	border:3px solid #eee;
+	width: 100%;
+	height: 65px;
+	border-radius: 4px; 
+}
+.chatBox textarea:focus
+{
+	outline: none;
+	border-color: #ffce54;
+}
+.footer__chatBox__submit
+{
+	display: inline-block;
+	padding: 12px;
+	font-size: 25px;
+	border: 3px solid #eee;
+	border-radius: 4px;
+	min-width: 150px;
+	text-align: center;
+	cursor: pointer;
+}
+.footer__chatBox__submit:hover
+{
+	opacity: 0.8;
+}
+
 .footer
 {
 	margin-top: 30px;
